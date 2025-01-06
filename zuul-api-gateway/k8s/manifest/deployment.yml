@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "zuul-api-gateway"
+  labels: 
+    app: zulu
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: "zuul-api-gateway"
+  template:
+    metadata:
+      labels:
+        app: "zuul-api-gateway"
+    spec:
+      containers:
+        - name: "zuul-api-gateway"
+          image: "paularinze/zuul"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 9999
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - react-ui
+            topologyKey: "kubernetes.io/hostname"

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "shoe-ui"
+  labels: 
+    app: shoe-ui
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: "shoe-ui"
+  template:
+    metadata:
+      labels:
+        app: shoe-ui
+    spec:
+      containers:
+        - name: "shoe-ui"
+          image: paularinze/shoe"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 1002

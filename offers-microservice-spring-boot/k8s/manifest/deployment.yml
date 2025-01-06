@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "offer-ui"
+  labels: 
+    app: offer-ui
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: "offer-ui"
+  template:
+    metadata:
+      labels:
+        app: offer-ui
+    spec:
+      containers:
+        - name: "offer-ui"
+          image: "paularinze/offer"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 1001

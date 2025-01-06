@@ -1,0 +1,13 @@
+apiVersion: "v1" 
+kind: "Service"
+metadata:
+  labels:
+    app: "offer-ui"
+  name: "offer"
+spec:
+  ports:
+  - name: "http"
+    port: 1001
+    targetPort: 1001
+  selector:
+    app: "offer-ui" 

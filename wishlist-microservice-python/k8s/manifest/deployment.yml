@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "wishlist-ui"
+  labels: 
+    app: wishlist-ui
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: "wishlist-ui"
+  template:
+    metadata:
+      labels:
+        app: wishlist-ui
+    spec:
+      containers:
+        - name: "shoe-ui"
+          image: "paularinze/wishlist"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5000
